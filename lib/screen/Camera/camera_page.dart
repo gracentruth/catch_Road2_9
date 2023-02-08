@@ -233,7 +233,7 @@ class _CameraPageState extends State<CameraPage> {
                                 ),
                               ),
                             ),
-                            SizedBox(width: 310),
+                            SizedBox(width: 270),
                             GestureDetector(
                               onTap: () {
                                 setState(() {
@@ -773,7 +773,7 @@ class _CameraPageState extends State<CameraPage> {
                             ),
                           ),
                         ),
-                        SizedBox(width: 310),
+                        SizedBox(width: 270),
                         GestureDetector(
                           onTap: () {
                             setState(() {

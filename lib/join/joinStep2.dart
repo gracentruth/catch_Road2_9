@@ -18,7 +18,7 @@ class joinStep2 extends StatefulWidget {
 
 bool isObscure = false;
 
-    final _formKey = GlobalKey<FormState>();
+    final _formKey2 = GlobalKey<FormState>();
 class _joinStep2State extends State<joinStep2> {
   final passwordcontroller = TextEditingController();
   @override
@@ -69,7 +69,74 @@ class _joinStep2State extends State<joinStep2> {
                     right: size.width * 0.06),
                 child: SizedBox(
                   height: size.height * 0.08,
-                  child: _FormPassword()
+                  child:  Form(
+                    key: _formKey2,
+                    child: TextFormField(
+                      validator: (val) {
+                        if (val!.length == 0) {
+                          return '비밀번호는 필수사항입니다.';
+                        }
+                        if (val.length < 8 || val.length > 13) {
+                          return '8~12자리를 입력해주세요!';
+                        }
+                        if(!RegExp(
+                            r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d\w\W]{8,}$')
+                            .hasMatch(val)){
+                          return '숫자와 영문 조합 최소 8자리를 입력해주세요';
+                        }
+
+
+                        return null;
+                      },
+                      controller: passwordcontroller,
+                      obscureText: isObscure ? true : false,
+                      style: TextStyle(fontSize: 13),
+                      decoration: InputDecoration(
+                          suffixIcon: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  isObscure = !isObscure;
+                                  print(isObscure);
+                                });
+                              },
+                              icon: isObscure
+                                  ? Image.asset('assets/icons/eye_active.png')
+                                  : Image.asset('assets/icons/eye_inactive.png')),
+                          suffixIconConstraints: BoxConstraints(minHeight: 6, minWidth: 16),
+                          focusColor: Color.fromARGB(6, 61, 50, 50),
+                          contentPadding: EdgeInsets.only( left: 30),
+                          hintText: '',
+                          errorText: '',
+                          errorStyle: labelSmallStyle(color: Colors.red),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(36.0)),
+                            borderSide:
+                            BorderSide(width: 0.5, color: Color.fromRGBO(0, 0, 0, 0.2)),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(36.0)),
+                            borderSide:
+                            BorderSide(width: 0.5, color: Color.fromRGBO(0, 0, 0, 0.2)),
+                          ),
+                          hintStyle: bodyMediumStyle(color: Color(0xff9FA5B2)),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(36.0)),
+                            borderSide:
+                            BorderSide(width: 0.5, color: Color.fromRGBO(0, 0, 0, 0.2)),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(36.0)),
+                            borderSide:
+                            BorderSide(width: 0.5, color: Color.fromRGBO(0, 0, 0, 0.2)),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(36.0)),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white),
+                      keyboardType: TextInputType.emailAddress,
+                    ),
+                  ),
                 )),
             SizedBox(height: size.height * 0.1),
             SizedBox(
@@ -82,7 +149,7 @@ class _joinStep2State extends State<joinStep2> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(30)))),
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {
+                      if (_formKey2.currentState!.validate()) {
                         Navigator.push(
                           context,
                           PageRouteBuilder(
@@ -105,67 +172,7 @@ class _joinStep2State extends State<joinStep2> {
     );
   }
 
-  Widget _FormPassword() {
-    return Form(
-      key: _formKey,
-      child: TextFormField(
-        validator: (val) {
-          if (val!.length == 0) {
-            return '비밀번호는 필수사항입니다.';
-          }
-          if (val.length < 8 || val.length > 13) {
-            return '8~12자리를 입력해주세요!';
-          }
-          return null;
-        },
-        controller: passwordcontroller,
-        obscureText: isObscure ? true : false,
-        style: TextStyle(fontSize: 13),
-        decoration: InputDecoration(
-            suffixIcon: IconButton(
-                onPressed: () {
-                  setState(() {
-                    isObscure = !isObscure;
-                    print(isObscure);
-                  });
-                },
-                icon: isObscure
-                    ? Image.asset('assets/icons/eye_active.png')
-                    : Image.asset('assets/icons/eye_inactive.png')),
-            suffixIconConstraints: BoxConstraints(minHeight: 6, minWidth: 16),
-            focusColor: Color.fromARGB(6, 61, 50, 50),
-            contentPadding: EdgeInsets.only( left: 30),
-            hintText: '',
-            errorText: '',
-            errorStyle: labelSmallStyle(color: Colors.red),
-            focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(36.0)),
-              borderSide:
-                  BorderSide(width: 0.5, color: Color.fromRGBO(0, 0, 0, 0.2)),
-            ),
-            errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(36.0)),
-              borderSide:
-                  BorderSide(width: 0.5, color: Color.fromRGBO(0, 0, 0, 0.2)),
-            ),
-            hintStyle: bodyMediumStyle(color: Color(0xff9FA5B2)),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(36.0)),
-              borderSide:
-                  BorderSide(width: 0.5, color: Color.fromRGBO(0, 0, 0, 0.2)),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(36.0)),
-              borderSide:
-                  BorderSide(width: 0.5, color: Color.fromRGBO(0, 0, 0, 0.2)),
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(36.0)),
-            ),
-            filled: true,
-            fillColor: Colors.white),
-        keyboardType: TextInputType.emailAddress,
-      ),
-    );
-  }
+  // Widget _FormPassword() {
+  //   return
+  // }
  }

@@ -25,17 +25,19 @@ class joinStep3 extends StatefulWidget {
 }
 
 bool isObscure = false;
-  final Namecontroller = TextEditingController();
-    final Yearcontroller = TextEditingController();
-    final Monthcontroller = TextEditingController();
-    final Daycontroller = TextEditingController();
-    final _formNameKey = GlobalKey<FormState>();
-    final _formyearKey = GlobalKey<FormState>();
-    final _formmonthKey = GlobalKey<FormState>();
-    final _formdatKey = GlobalKey<FormState>();
+
 
 
 class _joinStep3State extends State<joinStep3> {
+  final Namecontroller = TextEditingController();
+  final Yearcontroller = TextEditingController();
+  final Monthcontroller = TextEditingController();
+  final Daycontroller = TextEditingController();
+  final _formNameKey = GlobalKey<FormState>();
+  final _formyearKey = GlobalKey<FormState>();
+  final _formmonthKey = GlobalKey<FormState>();
+  final _formdatKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
 

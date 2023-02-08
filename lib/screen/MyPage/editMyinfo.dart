@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../../Auth/auth_service .dart';
 import '../../Auth/user_information.dart' as user;
 import 'package:flutter/material.dart';
 
@@ -33,21 +34,7 @@ class _editinfoState extends State<editinfo> {
 
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              PageRouteBuilder(
-                  pageBuilder: (_, __, ___) => MYPage(),
-                  transitionDuration: Duration(seconds: 0),
-                  transitionsBuilder: (_, a, __, c) =>
-                      FadeTransition(opacity: a, child: c)),
-            );
-          },
-          iconSize: 22,
-          color: Color(0xffCFD2D9),
-          icon: Icon(Icons.arrow_back_ios),
-        ),
+        leading: Container(),
         centerTitle: true,
         title: Text(
           "내 정보",
@@ -78,6 +65,24 @@ class _editinfoState extends State<editinfo> {
                     child: Divider(thickness: 1)),
                 _smalltitle('아이디'),
                 _dataStyle("${FirebaseAuth.instance.currentUser!.email!}"),
+                Padding(
+                  padding: const EdgeInsets.all(0.0),
+
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                       padding: EdgeInsets.all(0),
+                    ),
+
+
+                      onPressed:(){
+                    resetPassword(FirebaseAuth.instance.currentUser!.email!.toString());
+                  }
+                      , child: Text('비밀번호 재설정')),
+                ),
+           //      TextButton(onPressed: ()async{
+           // //   FirebaseAuth.instance.currentUser?.emailVerified=true;
+           //      }, child: Text('이메일 인증'))
+
                 // Padding(
                 //   padding: EdgeInsets.only(
                 //       top: size.height * 0.02, right: size.width * 0.01),
@@ -156,6 +161,7 @@ class _changePwdState extends State<changePwd> {
       key : _formKey,
       child: Scaffold(
         appBar: AppBar(
+
             backgroundColor: Colors.white,
             elevation: 0.2,
             centerTitle: true,

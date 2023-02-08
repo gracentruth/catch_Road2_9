@@ -153,7 +153,7 @@ class _BndBoxState extends State<BndBox> {
                     angle: 0 * math.pi / 180,
                     child: Text(
                      // "${re["detectedClass"]}",
-                      "${re["detectedClass"]} ${(re["confidenceInClass"] * 100).toStringAsFixed(0)}%",
+                      "${re["detectedClass"]} ",//${(re["confidenceInClass"] * 100).toStringAsFixed(0)}%
                       style: TextStyle(
                         color: Colors.greenAccent,
                         fontSize:20.0,

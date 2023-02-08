@@ -137,7 +137,7 @@ class _CatchboxState extends State<Catchbox> {
                                                   child: Card(
                                                       clipBehavior: Clip.antiAlias,
                                                       child: Transform.rotate(
-                                                        angle: 90 * math.pi / 180,
+                                                        angle: 0 * math.pi / 180,
                                                         child: ExtendedImage.network(
                                                           x['new'],
                                                           fit: BoxFit.fill,

@@ -9,9 +9,10 @@ import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:intl/intl.dart';
 import 'dart:math' as math;
 import 'package:extended_image/extended_image.dart';
+import '../../Community/HomePage.dart';
 import '../../utils/app_text_styles.dart';
 import '../Camera/camera_load.dart';
-import '../Community/HomePage.dart';
+
 import '../MyPage/MyPage.dart';
 import '../mainHome.dart';
 import '../notFound.dart';
@@ -1518,7 +1519,7 @@ class _Catchbox_detail2State extends State<Catchbox_detail2> {
                                                     query['category'] ==
                                                         'traffic light')
                                                 ? 0
-                                                : 90 * math.pi / 180,
+                                                : 0 * math.pi / 180,
                                             child: ExtendedImage.network(
                                               x['url'],
                                               fit: BoxFit.cover,

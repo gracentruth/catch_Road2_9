@@ -30,7 +30,7 @@ class projectPage extends StatefulWidget {
 class _projectPageState extends State<projectPage> {
   @override
   Widget build(BuildContext context) {
-    print("main_user_object${user_object}");
+    //print("main_user_object${user_object}");
 
     final Size size = MediaQuery.of(context).size;
     String email = '1234@handong.ac.kr';
@@ -57,7 +57,7 @@ class _projectPageState extends State<projectPage> {
               onChanged: (bool value) {
                 setState(() {
                   part = value;
-                  print('change');
+                  //print('change');
                 });
               },
               height: 40,
@@ -103,8 +103,7 @@ class _projectPageState extends State<projectPage> {
         // 수정1 끝 부분 (하람 1/10)
         Expanded(
           child: StreamBuilder<QuerySnapshot>(
-              stream:
-                  FirebaseFirestore.instance.collection('project').snapshots(),
+              stream: FirebaseFirestore.instance.collection('project').orderBy('final_day2', descending: false).snapshots(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData)
                   return Center(
@@ -133,9 +132,9 @@ class _projectPageState extends State<projectPage> {
                                     BorderRadius.all(Radius.circular(16))),
                             child: InkWell(
                               onTap: () {
-                                print('참여중 프로젝트1');
-                                print(snapshot.data!.docs[index]['id']
-                                    .toString());
+                                //print('참여중 프로젝트1');
+                                // print(snapshot.data!.docs[index]['id']
+                                //     .toString());
 
                                 if (ddaycalc((snapshot.data!.docs[index]
                                         ['final_day2'])) >=
@@ -334,9 +333,9 @@ class _projectPageState extends State<projectPage> {
                                     BorderRadius.all(Radius.circular(16))),
                             child: InkWell(
                               onTap: () {
-                                print('참여중 프로젝트중2');
-                                print(snapshot.data!.docs[index]['id']
-                                    .toString());
+                                // print('참여중 프로젝트중2');
+                                // print(snapshot.data!.docs[index]['id']
+                                //     .toString());
                                 if (snapshot.data!.docs[index]['part_user']
                                     .contains(FirebaseAuth
                                         .instance.currentUser!.email!)) {
@@ -351,7 +350,7 @@ class _projectPageState extends State<projectPage> {
                                         ));
                                   }
                                 } else {
-                                  print('참여 X');
+                                  //print('참여 X');
                                   if (ddaycalc((snapshot.data!.docs[index]
                                           ['final_day2'])) >=
                                       0) {

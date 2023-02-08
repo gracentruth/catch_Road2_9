@@ -88,77 +88,89 @@ class _MYPageState extends State<MYPage> {
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Row(
-                      children: [
-                        Center(
-                          child: ClipRRect(
-                              borderRadius:
-                                  BorderRadius.circular(100), // Image border
-                              child: SizedBox.fromSize(
-                                size: Size.fromRadius(35), // Image radius
-                                child: Image.asset('assets/img.png',
-                                    fit: BoxFit.cover),
-                              )),
-                        ),
-                        Stack(
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding:
-                                      EdgeInsets.only(left: size.width * 0.04),
-                                  child: Row(
-                                    children: [
-                                      Text(
-                                        '${UserNickName}',
-                                        //FirebaseAuth.instance.currentUser!.displayName!
-                                        style: titleMediumStyle(
-                                            color: Colors.black),
-                                      ),
-                                      Text(" 님",
-                                          style: labelMediumStyle(
-                                              color: Colors.black)),
-                                    ],
+                    InkWell(
+                      child: Row(
+                        children: [
+                          Center(
+                            child: ClipRRect(
+                                borderRadius:
+                                BorderRadius.circular(100), // Image border
+                                child: SizedBox.fromSize(
+                                  size: Size.fromRadius(35), // Image radius
+                                  child: Image.asset('assets/img.png',
+                                      fit: BoxFit.cover),
+                                )),
+                          ),
+                          Stack(
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding:
+                                    EdgeInsets.only(left: size.width * 0.04),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          '${UserNickName}',
+                                          //FirebaseAuth.instance.currentUser!.displayName!
+                                          style: titleMediumStyle(
+                                              color: Colors.black),
+                                        ),
+                                        Text(" 님",
+                                            style: labelMediumStyle(
+                                                color: Colors.black)),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  top: size.height * 0.035,
-                                  left: size.width * 0.04),
-                              child: Text(
-                                '${FirebaseAuth.instance.currentUser!.email!}',
-                                //FirebaseAuth.instance.currentUser!.email!
-                                style:
-                                    labelSmallStyle(color: Color(0xff9FA5B2)),
+                                ],
                               ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: size.width * 0.55),
-                              child: IconButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      PageRouteBuilder(
-                                          pageBuilder: (_, __, ___) =>
-                                              editinfo(),
-                                          transitionDuration:
-                                              Duration(seconds: 0),
-                                          transitionsBuilder: (_, a, __, c) =>
-                                              FadeTransition(
-                                                  opacity: a, child: c)),
-                                    );
-                                  },
-                                  icon: Icon(
-                                    Icons.arrow_forward_ios_rounded,
-                                    color: Color(0xffCFD2D9),
-                                  )),
-                            ),
-                          ],
-                        )
-                      ],
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    top: size.height * 0.035,
+                                    left: size.width * 0.04),
+                                child: Text(
+                                  '${FirebaseAuth.instance.currentUser!.email!}',
+                                  //FirebaseAuth.instance.currentUser!.email!
+                                  style:
+                                  labelSmallStyle(color: Color(0xff9FA5B2)),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(left: size.width * 0.55),
+                                child: IconButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        PageRouteBuilder(
+                                            pageBuilder: (_, __, ___) =>
+                                                editinfo(),
+                                            transitionDuration:
+                                            Duration(seconds: 0),
+                                            transitionsBuilder: (_, a, __, c) =>
+                                                FadeTransition(
+                                                    opacity: a, child: c)),
+                                      );
+                                    },
+                                    icon: Icon(
+                                      Icons.arrow_forward_ios_rounded,
+                                      color: Color(0xffCFD2D9),
+                                    )),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                      onTap: (){
+
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) => editinfo(),
+                            ));
+
+                      },
+
                     ),
                     SizedBox(
                       height: size.height * 0.03,

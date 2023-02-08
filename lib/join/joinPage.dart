@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../Auth/user_information.dart';
 import '../utils/app_text_styles.dart';
 import 'joinStep2.dart';
+import 'joinStep3.dart';
 
 
 String _email = '';
@@ -19,7 +20,7 @@ class joinPage extends StatefulWidget {
 
 
 class _joinPageState extends State<joinPage> {
-     final Emailcontroller = TextEditingController();
+  final Emailcontroller = TextEditingController();
     final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -30,6 +31,7 @@ class _joinPageState extends State<joinPage> {
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
+
             },
             icon: Icon(
               Icons.arrow_back_ios_new,

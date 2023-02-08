@@ -32,6 +32,8 @@ bool toggle3 = false;
 class _HomePageState extends State<HomePage> {
   var _listTextTabToggle = ["전체", "도로 위가 궁금해요", "캐치가 궁금해요"];
   var _tabTextIndexSelected = 0;
+  String _category='category';
+  bool _FullCategory = false;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   var _toDay = DateTime.now(); // 시간 비교 하기
   int _mylike = 0;
@@ -96,6 +98,7 @@ class _HomePageState extends State<HomePage> {
           ],
           bottom: buildAppBarBottom()),
       body: StreamBuilder<QuerySnapshot>(
+                  // stream: FirebaseFirestore.instance.collection('Product').orderBy('price', descending: _ASC).snapshots(),
           stream: FirebaseFirestore.instance.collection('Contents').snapshots(),
           builder: (context, snapshot) {
             if (!snapshot.hasData)
@@ -109,7 +112,6 @@ class _HomePageState extends State<HomePage> {
                 itemBuilder: (context, index) {
                   return InkWell(
                     onTap: () async {
-                      print("clicked");
                       _comment = snapshot.data!.docs[index]['_comment'];
                       _docid = snapshot.data!.docs[index]['id'];
                       Navigator.pushNamed(context, '/detail', arguments: index);
@@ -230,67 +232,6 @@ class _HomePageState extends State<HomePage> {
                                     SizedBox(
                                       width: 16,
                                     ),
-                                    // IconButton(
-                                    //   color: Colors.grey,
-                                    //   constraints:
-                                    //       BoxConstraints(maxHeight: 15),
-                                    //   padding: EdgeInsets.all(0.0),
-                                    //   iconSize: 20,
-                                    //   icon: Icon(snapshot
-                                    //               .data!
-                                    //               .docs[index]['_like']
-                                    //               .length ==
-                                    //           0
-                                    //       ? Icons.favorite_border
-                                    //       : Icons.favorite),
-                                    //   onPressed: () {
-                                    //     setState(() {
-                                    //       if (snapshot
-                                    //               .data!
-                                    //               .docs[index]['_like']
-                                    //               .length !=
-                                    //           0) {
-                                    //         for (int i = 0;
-                                    //             i <
-                                    //                 snapshot
-                                    //                     .data!
-                                    //                     .docs[index]['_like']
-                                    //                     .length;
-                                    //             i++) {
-                                    //           if (snapshot.data!.docs[index]
-                                    //                   ['_like'][i] ==
-                                    //               "바ㄱ정규") {
-                                    //             print('좋아요 취소');
-                                    //             LikeCancelFunction(
-                                    //                 snapshot.data!.docs[index]
-                                    //                     ['_like'],
-                                    //                 snapshot.data!.docs[index]
-                                    //                     ['id'],
-                                    //                 "바ㄱ정규");
-                                    //             break;
-                                    //           } else {
-                                    //             print('좋아요');
-                                    //             LikeFunction(
-                                    //                 snapshot.data!.docs[index]
-                                    //                     ['_like'],
-                                    //                 snapshot.data!.docs[index]
-                                    //                     ['id'],
-                                    //                 '바ㄱ정규');
-                                    //           }
-                                    //         }
-                                    //       } else {
-                                    //         print('좋아요');
-                                    //         LikeFunction(
-                                    //             snapshot.data!.docs[index]
-                                    //                 ['_like'],
-                                    //             snapshot.data!.docs[index]
-                                    //                 ['id'],
-                                    //             "바ㄱ정규");
-                                    //       }
-                                    //     });
-                                    //   },
-                                    // ),
-
                                     SizedBox(width: 6),
                                     Image.asset(
                                       'assets/icons/likeicon.png',
